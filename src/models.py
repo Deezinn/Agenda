@@ -22,17 +22,15 @@ class AgendaModels:
     def listar_contatos(self):
         return self.contatos
 
-    def editar_contato(self, nome, novo_telefone=None, novo_email=None, novo_favorito=None):
+    def editar_contato(self, nome, novo_nome=None, novo_telefone=None, novo_email=None):
         for contato in self.contatos:
             if contato.nome == nome:
-                if novo_telefone:
+                if novo_nome is not None:
+                    contato.nome = novo_nome
+                if novo_telefone is not None:
                     contato.telefone = novo_telefone
-                if novo_email:
+                if novo_email is not None:
                     contato.email = novo_email
-                if novo_favorito is not None:
-                    contato.favorito = novo_favorito
-                contato.updated_at = datetime.now.date()
-                return f"Contato {nome} foi editado com sucesso!"
-        return f"contato {nome} não encontrado"
-
+                return f"Contato alterado com sucesso!"
+            return f"Não encontramos esse contato."
 

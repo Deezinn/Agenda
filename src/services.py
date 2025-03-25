@@ -14,5 +14,5 @@ class AgendaService:
     def listar_contatos(self):
         return self.model.listar_contatos()
 
-    def editar_contato(self):
-       return self.model.editar_contato(nome, novo_telefone, novo_email, novo_favorito):
+    def editar_contato(self, nome, novo_nome=None, novo_telefone=None, novo_email=None):
+       return self.model.editar_contato(nome, novo_nome, novo_telefone, novo_email)

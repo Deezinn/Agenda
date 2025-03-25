@@ -12,9 +12,8 @@ class AgendaController:
         favorito = False
         created_at = datetime.now().date()
         updated_at = None
-
         try:
-            print(self.service.adicionar_contato(nome,telefone,email,favorito,created_at,updated_at))
+            print(self.service.adicionar_contato(nome, telefone, email, favorito, created_at, updated_at))
         except ValueError as e:
             print(f"Erro: {e}")
 
@@ -31,47 +30,19 @@ class AgendaController:
         if not contatos:
             print("Não há contatos cadastrados!")
         else:
-            for contato in contatos:
-                contato_a_mudar = input("Digite qual contato queira mudar: ")
-                
+            nome = input("Digite o contato a ser editado: ")
+            opcoes = input("Digite a opção para modificar, [1] nome, [2] telefone, [3] E-mail: ")
+            if opcoes == '1':
+                novo_nome = input("Digite o novo nome:")
+                self.service.editar_contato(nome,novo_nome,None,None)
+            if opcoes == '2':
+                novo_telefone = input("Digite o novo telefone:")
+                self.service.editar_contato(nome,None,novo_telefone,None)
+            if opcoes == '3':
+                novo_email = input("Digite o novo email:")
+                self.service.editar_contato(nome,None,None,novo_email)
+           
 
-
-
-
-
-
-
-                else:
-                    print('Você digitou algo errado')
-
-    def marcar_contato_favorito(self):
-        contatos = self.service.listar_contatos()
-        if not contatos:
-            print("Não há contatos cadastrados!")
-        else:
-            for contato in contatos:
-                contato_a_favoritar = input("Digite o contato que queira favoritar: ")
-                if contato.nome == contato_a_favoritar:
-                    contato.favorito = True
-                    print("Pronto, foi marcado com uma estrelinha")
-
-    def listar_contatos_favoritos(self):
-        contatos = self.service.listar_contatos()
-        if not contatos:
-            print("Não há contatos cadastrados!")
-        else:
-            for contato in contatos:
-                if contato.favorito == True:
-                    print(contato)
-
-    def apagar_contato(self):
-        contatos = self.service.listar_contatos()
-        if not contatos:
-            print("Não há contatos cadastrados!")
-        else:
-            for contato in contatos:
-                contato_a_deletar = input("Digite o contato que deseja deletar: ")
-                if contato.nome == contato_a_deletar:
 
 
 agenda = AgendaController()
@@ -79,7 +50,7 @@ count = 0
 while True:
     agenda.adicionar_contato()
     agenda.visualizar_contatos()
-    count+= 1
+    count += 1
     agenda.editar_contato()
     if count >= 2:
         break
