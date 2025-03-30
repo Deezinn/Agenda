@@ -68,15 +68,3 @@ class AgendaController:
             nome_a_deletar = input("Digite o nome do contato que queira deletar: ")
             self.service.deletar_contato(nome_a_deletar)
 
-agenda = AgendaController()
-count = 0
-while True:
-    agenda.adicionar_contato()
-    agenda.marcar_contato_favorito()
-    count += 1
-    if count >= 1:
-        break
-
-agenda.listar_contatos_favoritos()
-agenda.deletar_contato()
-agenda.visualizar_contatos()
